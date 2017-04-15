@@ -25,7 +25,14 @@ class TrajectoryControl:
     js.header.stamp = rospy.Time.now()
     js.velocity = [v0, v1]
     self.cmd_pub.publish(js)
-    
+      
+  def set_position_velocity(self, p0, v1):
+    js = JointState()
+    js.header.stamp = rospy.Time.now()
+    js.position = [p0]
+    js.velocity = [float('nan'), v1]
+    self.cmd_pub.publish(js)
+
   def random_position_demo(self):
     rate = rospy.Rate(1.0)
     while not rospy.is_shutdown():
@@ -38,7 +45,8 @@ class TrajectoryControl:
     while not rospy.is_shutdown():
       if (rospy.Time.now() - self.last_state.header.stamp).to_sec() < 0.5:
         p0, p1 = self.last_state.position
-        self.set_velocities(0.0, -numpy.cos(rospy.Time.now().to_sec()))
+        #self.set_position_velocity(0.0, -numpy.cos(rospy.Time.now().to_sec()))
+        self.set_positions(0.0, numpy.sin(rospy.Time.now().to_sec()))
       rate.sleep()
     
 if __name__ == '__main__':
