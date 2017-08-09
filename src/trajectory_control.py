@@ -45,8 +45,8 @@ class TrajectoryControl:
     while not rospy.is_shutdown():
       if (rospy.Time.now() - self.last_state.header.stamp).to_sec() < 0.5:
         p0, p1 = self.last_state.position
-        #self.set_position_velocity(0.0, -numpy.cos(rospy.Time.now().to_sec()))
-        self.set_positions(0.0, numpy.sin(rospy.Time.now().to_sec()))
+        self.set_position_velocity(0.0, numpy.cos(rospy.Time.now().to_sec()))
+        #self.set_positions(0.0, numpy.sin(rospy.Time.now().to_sec()))
       rate.sleep()
     
 if __name__ == '__main__':
