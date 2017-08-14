@@ -1,0 +1,3 @@
+<launch>
+  <node name="wiggle_jig" pkg="wiggle_jig" type="wiggle_jig.py" />
+</launch>

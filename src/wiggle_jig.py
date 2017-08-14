@@ -61,4 +61,4 @@ class WiggleJig(threading.Thread):
 
 if __name__ == '__main__':
   wj = WiggleJig()
-  wj.start()
+  wj.run()
